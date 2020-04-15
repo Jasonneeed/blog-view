@@ -88,7 +88,7 @@
     }
 
     p:hover {
-        color: #42b983;
+        color: #409eff;
     }
 
     .tag-div {

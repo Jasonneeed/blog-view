@@ -1,33 +1,25 @@
 <template>
     <div id="app">
-        <nav-index/>
-        <blog-simple/>
-        <nav-right/>
+        <router-view :key="$router.fullPath"></router-view>
     </div>
 </template>
 
 <script>
-    import NavIndex from "@/components/nav-index";
-    import NavRight from "@/components/nav-right";
-    import BlogSimple from "@/components/blog-simple";
     export default {
-        name: 'App',
-        components: {
-            BlogSimple,
-            NavRight,
-            NavIndex
-        }
+        name: 'App'
     }
 </script>
 
 <style>
-    html{
+    html {
         height: 100%;
     }
-    body{
+
+    body {
         margin: 0;
         height: 100%;
     }
+
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
