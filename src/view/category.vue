@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div id="category-show">
+
+    </div>
 </template>
 
 <script>

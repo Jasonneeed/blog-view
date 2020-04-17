@@ -11,8 +11,7 @@
                         <span>用户管理</span>
                     </template>
                     <el-menu-item-group>
-                        <template slot="title">1-1</template>
-                        <el-menu-item index="1-1">查看用户数据</el-menu-item>
+                        <el-menu-item index="1-1"><i class="el-icon-user"></i>查看用户数据</el-menu-item>
                     </el-menu-item-group>
                 </el-submenu>
                 <el-menu-item index="2">
@@ -29,6 +28,7 @@
 </template>
 <script>
     export default {
+        name: 'admin-nav-left',
         methods: {
             handleOpen(key, keyPath) {
                 console.log(key, keyPath);

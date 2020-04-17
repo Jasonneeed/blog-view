@@ -2,21 +2,25 @@
     <div id="nav-right">
         <div class="nav-right-box">
             <h5>热门标签</h5>
-            <div v-for="hot in hotBlogs" :key="hot.blogId">
-                <p :title="hot.title">{{hot.title}}</p>
+            <div v-for="hot in boxData.hotBlogs" :key="hot.blogId">
+                <router-link :to="'blog/'+hot.blogId">
+                    <p :title="hot.title">{{hot.title}}</p>
+                </router-link>
             </div>
         </div>
         <div class="nav-right-box">
             <h5>最新的</h5>
-            <div v-for="last in newBlogs" :key="last.blogId">
-                <p :title="last.title">{{last.title}}</p>
+            <div v-for="last in boxData.newBlogs" :key="last.blogId">
+                <router-link :to="'blog/'+last.blogId">
+                    <p :title="last.title">{{last.title}}</p>
+                </router-link>
             </div>
         </div>
         <div class="nav-right-box">
             <h5>标签</h5>
             <div class="tag-div">
-                <el-button v-for="tag in tags" :key="tag.tagId" size="mini"
-                           :title="tag.name" @click="goTag(tag.tagId)" round>{{tag.name}}
+                <el-button v-for="tag in boxData.tags" :key="tag.tagId" size="mini"
+                           :title="tag.tagName" @click="goTag(tag.tagId)" round>{{tag.tagName}} ({{tag.count}})
                 </el-button>
             </div>
         </div>
@@ -24,38 +28,35 @@
 </template>
 
 <script>
+    import {boxData} from "@/method/base";
+
     export default {
         name: "nav-right",
         data() {
             return {
-                hotBlogs: [
-                    {'blogId': 1, 'title': '这是最火的wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww'},
-                    {'blogId': 2, 'title': '这是第二个'}
-                ],
-                newBlogs: [
-                    {'blogId': 1, 'title': '这是最最最最最最最最最最最最最最最新的'},
-                    {'blogId': 2, 'title': '下面没了'}
-                ],
-                tags: [
-                    {'tagId': 1, 'name': 'diyige'},
-                    {'tagId': 2, 'name': '第一个'},
-                    {'tagId': 3, 'name': 'sprisssssssssssssssssssssssng'},
-                    {'tagId': 4, 'name': 'spring'},
-                    {'tagId': 5, 'name': 'spg'},
-                    {'tagId': 6, 'name': 'spg'},
-                    {'tagId': 7, 'name': 'spring'},
-                ]
+                boxData: {}
             }
         },
         methods: {
             goTag(path) {
-                alert(path);
+                this.$router.push('tag/' + path);
             }
+        },
+        mounted: function () {
+            boxData().then(res => {
+                return res.json();
+            }).then(json => {
+                this.boxData = json;
+            });
         }
     }
 </script>
 
 <style scoped>
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
     #nav-right {
         float: right;
         cursor: default;

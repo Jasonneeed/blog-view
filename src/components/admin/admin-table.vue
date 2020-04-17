@@ -24,7 +24,7 @@
 
 <script>
     export default {
-        name: "admin-table.vue",
+        name: "admin-table",
         data() {
             return {
                 pageResult: {
@@ -70,14 +70,18 @@
                     console.log(val);
                 }
             }
+        },
+        mounted: {
+
         }
     }
 </script>
 
 <style scoped>
-    #admin-content{
+    #admin-content {
 
     }
+
     .admin-table {
         text-align: center;
     }

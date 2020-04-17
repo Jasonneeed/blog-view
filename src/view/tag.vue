@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div id="tag-show">
+
+    </div>
 </template>
 
 <script>

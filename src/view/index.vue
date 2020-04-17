@@ -4,7 +4,7 @@
         <div id="blog-description">
             <div class="blog-description-box" v-for="blog in pageResult.list" :key="blog.blogId">
                 <div class="blog-simple-top">
-                    <router-link to="/"><p :title="blog.title">{{blog.title}}</p></router-link>
+                    <router-link :to="'/blog/'+blog.blogId"><p :title="blog.title">{{blog.title}}</p></router-link>
                     <span>{{blog.createTime}}</span>
                 </div>
                 <div class="blog-simple-content">
@@ -33,6 +33,7 @@
 
     import NavIndex from "@/components/nav-index";
     import NavRight from "@/components/nav-right";
+    import {indexData} from "@/method/base";
 
     export default {
         name: "blog-simple",
@@ -40,28 +41,26 @@
         data() {
             return {
                 pageResult: {},
-
             }
         },
         methods: {
-            getData(page) {
-                this.pageResult.blogs.reverse();
-                this.$router.push({path: 'index', query: {page: page}});
+            getData:function() {
+                console.log(this.pageResult.currentPage);
             }
         },
-        mounted: function () {
-            let request = new XMLHttpRequest();
-            request.open('GET', 'http://localhost:99', true);
-            request.send();
-            request.onreadystatechange = ()=>{
-                if (request.readyState === 4 && request.status === 200) {
-                    this.pageResult = JSON.parse(request.responseText);
-                    console.log(this.pageResult);
-                }else{
-                    this.$router.push({path: 'error'});
-                }
+        created: function () {
+            let page;
+            if (this.$route.query.page) {
+                page = this.$route.query.page;
+            }else{
+                page = 0;
             }
-        },
+            indexData(page).then(res => {
+                return res.json();
+            }).then(json => {
+                this.pageResult = json;
+            })
+        }
     }
 </script>
 

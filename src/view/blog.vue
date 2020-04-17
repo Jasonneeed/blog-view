@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div id="blog-show">
+
+    </div>
 </template>
 
 <script>

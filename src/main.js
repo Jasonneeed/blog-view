@@ -15,7 +15,14 @@ const router = new VueRouter({
     mode: 'history',
     routes
 })
-
+router.beforeEach((to, from, next)=>{
+    if(to.params.title){
+        document.title = to.params.title;
+    }else if(to.meta.title){
+        document.title = to.meta.title;
+    }
+    next();
+})
 new Vue({
     router,
     render: h => h(App)

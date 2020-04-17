@@ -1,5 +1,7 @@
 <template>
-    $END$
+    <div id="admin-show">
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
