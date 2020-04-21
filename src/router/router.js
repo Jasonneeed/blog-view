@@ -15,7 +15,7 @@ export default [{
     children: [
         {path: '/', component:index, meta:{title: '首页'}},
         {path: '/test', component: test, meta: {title: '测试'}},
-        {path: '/blog/:title', component: blog, meta: {title: '文章详情'}},
+        {path: '/blog/:blogId', name: 'blog', component: blog, meta: {title: '文章详情'}},
         {path: '/tag/:tag', component: tag, meta: {title: '标签详情'}},
         {path: '/category/:category', component: category, meta: {title: '类别详情'}},
         {path: '/tmcaibudao/admin', component: admin, meta: {title: '后台管理'}},

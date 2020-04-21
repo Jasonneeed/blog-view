@@ -1,10 +1,10 @@
 <template>
     <div id="index">
         <nav-index></nav-index>
-        <div id="blog-description">
+        <div class="index-left">
             <div class="blog-description-box" v-for="blog in pageResult.list" :key="blog.blogId">
                 <div class="blog-simple-top">
-                    <router-link :to="'/blog/'+blog.blogId"><p :title="blog.title">{{blog.title}}</p></router-link>
+                    <p :title="blog.title" @click="readBlog(blog.title, blog.blogId)">{{blog.title}}</p>
                     <span>{{blog.createTime}}</span>
                 </div>
                 <div class="blog-simple-content">
@@ -19,8 +19,8 @@
                 </div>
             </div>
             <div class="blog-page">
-                <el-pagination :page-size="pageResult.pageSize" :current-page="pageResult.currentPage"
-                               :hide-on-single-page="true" layout="prev, pager, next, jumper" @current-change="getData"
+                <el-pagination :page-size="pageResult.pageSize" :current-page="currentPage"
+                               :hide-on-single-page="true" layout="prev, pager, next, jumper" @current-change="handlePage"
                                :total="pageResult.totalCount">
                 </el-pagination>
             </div>
@@ -41,25 +41,36 @@
         data() {
             return {
                 pageResult: {},
+                currentPage: 0
             }
         },
         methods: {
-            getData:function() {
-                console.log(this.pageResult.currentPage);
+            handlePage: function (page) {
+                this.$router.push({path: '/', query: {page: page}});
+                this.getData(page)
+            },
+            getData: function (page) {
+                indexData(page).then(res => {
+                    return res.json();
+                }).then(json => {
+                    this.pageResult = json;
+                    this.$nextTick(() => {
+                        this.currentPage = this.pageResult.currentPage;
+                    });
+                })
+            },
+            readBlog: function (title, blogId) {
+                this.$router.push({name:'blog', params:{title: title, blogId:blogId}})
             }
         },
         created: function () {
             let page;
             if (this.$route.query.page) {
                 page = this.$route.query.page;
-            }else{
+            } else {
                 page = 0;
             }
-            indexData(page).then(res => {
-                return res.json();
-            }).then(json => {
-                this.pageResult = json;
-            })
+            this.getData(page);
         }
     }
 </script>
@@ -70,7 +81,7 @@
         color: inherit;
     }
 
-    #blog-description {
+    .index-left {
         float: left;
         margin: 0 0 0 20px;
         min-width: 300px;
@@ -153,5 +164,6 @@
 
     .blog-page {
         margin-top: 20px;
+        text-align: center;
     }
 </style>
