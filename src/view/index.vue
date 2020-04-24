@@ -20,7 +20,8 @@
             </div>
             <div class="blog-page">
                 <el-pagination :page-size="pageResult.pageSize" :current-page="currentPage"
-                               :hide-on-single-page="true" layout="prev, pager, next, jumper" @current-change="handlePage"
+                               :hide-on-single-page="true" layout="prev, pager, next, jumper"
+                               @current-change="handlePage"
                                :total="pageResult.totalCount">
                 </el-pagination>
             </div>
@@ -57,10 +58,12 @@
                     this.$nextTick(() => {
                         this.currentPage = this.pageResult.currentPage;
                     });
+                }).catch(() => {
+                    this.$router.push({path:'/error'});
                 })
             },
             readBlog: function (title, blogId) {
-                this.$router.push({name:'blog', params:{title: title, blogId:blogId}})
+                this.$router.push({name: 'blog', params: {title: title, blogId: blogId}})
             }
         },
         created: function () {
@@ -76,17 +79,10 @@
 </script>
 
 <style scoped>
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
+    @import "../style/common.css";
 
-    .index-left {
-        float: left;
-        margin: 0 0 0 20px;
-        min-width: 300px;
-        width: 70%;
-    }
+
+
 
     .blog-description-box {
         border-radius: 3px;
@@ -166,4 +162,6 @@
         margin-top: 20px;
         text-align: center;
     }
+
+
 </style>

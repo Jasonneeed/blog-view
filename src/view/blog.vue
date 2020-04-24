@@ -3,19 +3,19 @@
         <nav-index/>
         <div>
             <h1 style="text-align:center">{{blog.title}}</h1>
-            <markdown-preview :value="blog.content" :isPreview='true'></markdown-preview>
+            <Markdown :value="blog.content" :is-preview="true"></Markdown>
         </div>
     </div>
 </template>
 
 <script>
-    import MarkdownPreview from 'vue-meditor';
     import {blogData} from '../method/base';
     import NavIndex from "../components/nav-index";
+    import Markdown from "../components/markdown/simple";
 
     export default {
         name: "blog",
-        components: {NavIndex, MarkdownPreview},
+        components: {Markdown, NavIndex},
         data() {
             return {
                 blog: {}
@@ -27,20 +27,21 @@
                 return res.json();
             }).then(json => {
                 this.blog = json;
-                    document.title = this.blog.title;
+                this.title = this.blog.title;
                 console.log(this.blog);
             });
         }
     }
 </script>
 
-<style scoped>
+<style>
     .markdown.border {
         margin: 0 20px 0 20px;
-        border: none;
+        border: none !important;
         height: fit-content !important;
     }
-    .markdown-preview ul li:after{
-        background: white !important;
+
+    .markdown-preview ul li:after {
+        display: none !important;
     }
 </style>

@@ -61,7 +61,7 @@
         float: right;
         cursor: default;
         overflow: hidden;
-        text-align: center;
+        text-align: center
     }
 
     .nav-right-box {

@@ -1,0 +1,15 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+#nav-right {
+    padding-bottom: 20px;
+}
+
+/* 相关主页显示的左部分位置*/
+.index-left {
+    float: left;
+    margin: 0 0 0 20px;
+    min-width: 300px;
+    width: 70%;
+}

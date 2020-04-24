@@ -17,15 +17,5 @@
 </script>
 
 <style scoped>
-    #admin-nav {
-        display: inline-block;
-        position: absolute;
-        left: 0;
-    }
 
-    #admin-content {
-        display: inline;
-        position:absolute;
-        text-align: center;
-    }
 </style>
