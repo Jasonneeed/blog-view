@@ -12,5 +12,7 @@
 </script>
 
 <style scoped>
-
+    #notFund{
+        text-align: center;
+    }
 </style>

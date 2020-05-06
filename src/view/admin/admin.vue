@@ -1,9 +1,18 @@
 <template>
     <div id="admin-show">
-        <admin-nav-left></admin-nav-left>
-        <div id="admin-content">
-            <router-view></router-view>
-        </div>
+        <el-container>
+            <el-aside width="300px">
+                <admin-nav-left/>
+            </el-aside>
+            <el-container>
+                <el-header>
+                    <p>这是头</p>
+                </el-header>
+                <el-main>
+                    <router-view></router-view>
+                </el-main>
+            </el-container>
+        </el-container>
     </div>
 </template>
 
@@ -18,9 +27,7 @@
 
 <style scoped>
     #admin-nav {
-        display: inline-block;
         position: absolute;
-        left: 0;
     }
 
     #admin-content {

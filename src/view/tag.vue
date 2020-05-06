@@ -1,7 +1,6 @@
 <template>
     <div id="tag-show">
         <nav-index/>
-        <p>tag weizhi</p>
         <nav-right/>
     </div>
 </template>
