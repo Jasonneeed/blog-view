@@ -5,22 +5,8 @@
         </el-header>
         <el-main>
             <div class="index-left">
-                <div class="blog-description-box" v-for="blog in pageResult.list" :key="blog.blogId">
-                    <div class="blog-simple-top">
-                        <p :title="blog.title" @click="readBlog(blog.title, blog.blogId)">{{blog.title}}</p>
-                        <span>{{blog.createTime}}</span>
-                    </div>
-                    <div class="blog-simple-content">
-                        <p>{{blog.description}}</p>
-                    </div>
-                    <div class="blog-simple-footer">
-                    <span :title="'有'+blog.read+'个人看过这篇文章'"><i
-                            class="el-icon-view"></i> <span>({{blog.read}})</span></span>
-                        <span :title="'有'+blog.read+'个人觉得很nice'"><i
-                                class="el-icon-view"></i> <span>({{blog.read}})</span></span>
-                        <router-link :to="'category/'+blog.categoryName"><p>{{blog.categoryName}}</p></router-link>
-                    </div>
-                </div>
+                <blog-list v-on:get-data="getData" v-bind:page-result="pageResult"
+                           v-bind:current-page="currentPage"></blog-list>
                 <div class="blog-page">
                     <el-pagination :page-size="pageResult.pageSize" :current-page="currentPage"
                                    :hide-on-single-page="true" layout="prev, pager, next, jumper"
@@ -52,8 +38,8 @@
         },
         methods: {
             handlePage: function (page) {
-                this.$router.push({path: '/', query: {page: page}});
-                this.getData(page)
+                this.$router.push({path: this.$route.path, query: {page: page}});
+                this.getData(page);
             },
             getData: function (page) {
                 categories(page).then(res => {
@@ -66,9 +52,6 @@
                 }).catch(() => {
                     this.$router.push({path: '/error'});
                 })
-            },
-            readBlog: function (title, blogId) {
-                this.$router.push({name: 'blog', params: {title: title, blogId: blogId}})
             }
         },
         created: function () {

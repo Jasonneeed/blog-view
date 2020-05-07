@@ -8,11 +8,10 @@ const category = () => import('../view/category');
 const admin = () => import('../view/admin/admin');
 const login = () => import('../view/admin/login');
 const adminBlog = () => import('../components/admin/blog');
-const adminBlogEditor = () => import('../components/admin/editor')
+const adminBlogEditor = () => import('../components/admin/editor');
 const adminUser = () => import('../components/admin/user');
 const adminLog = () => import('../components/admin/log');
 const adminTag = () => import('../components/admin/tag');
-
 const adminCategory = () => import('../components/admin/category');
 const error = () => import('../view/error');
 
