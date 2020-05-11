@@ -35,6 +35,7 @@
 </script>
 
 <style>
+    @import "../style/common.css";
     .markdown.border {
         margin: 0 20px 0 20px;
         border: none !important;

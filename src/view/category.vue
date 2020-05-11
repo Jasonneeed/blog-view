@@ -1,7 +1,7 @@
 <template>
     <el-container id="category-show">
         <el-header>
-            <nav-index></nav-index>
+            <nav-index v-bind:active-index="activeIndex"></nav-index>
         </el-header>
         <el-main>
             <div class="index-left">
@@ -25,11 +25,12 @@
     import NavIndex from "../components/nav-index";
     import NavRight from "../components/nav-right";
     import Footer from "../components/footer";
-    import {initPage, categories} from "../method/base";
+    import BlogList from "../components/blogList";
+    import {initPage, categoryData} from "../method/base";
 
     export default {
         name: "category",
-        components: {Footer, NavRight, NavIndex},
+        components: {Footer, NavRight, NavIndex,BlogList},
         data() {
             return {
                 pageResult: {},
@@ -42,7 +43,8 @@
                 this.getData(page);
             },
             getData: function (page) {
-                categories(page).then(res => {
+                let category = this.$route.params.category;
+                categoryData(category, page).then(res => {
                     return res.json();
                 }).then(json => {
                     this.pageResult = json;
@@ -63,6 +65,7 @@
 
 <style scoped>
     @import "../style/common.css";
+
 
     p {
         display: inline-block;

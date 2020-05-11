@@ -20,7 +20,7 @@
             <h5>标签</h5>
             <div class="tag-div">
                 <el-button v-for="tag in boxData.tags" :key="tag.tagId" size="mini"
-                           :title="tag.tagName" @click="goTag(tag.tagId)" round>{{tag.tagName}} ({{tag.count}})
+                           :title="tag.tagName" @click="goTag(tag.tagName)" round>{{tag.tagName}} ({{tag.count}})
                 </el-button>
             </div>
         </div>
@@ -38,8 +38,8 @@
             }
         },
         methods: {
-            goTag(path) {
-                this.$router.push('tag/' + path);
+            goTag(title) {
+                this.$router.push({name: 'tag', params: {title: title, tag: title}});
             }
         },
         mounted: function () {
@@ -53,10 +53,11 @@
 </script>
 
 <style scoped>
-    a{
+    a {
         text-decoration: none;
         color: inherit;
     }
+
     #nav-right {
         float: right;
         cursor: default;

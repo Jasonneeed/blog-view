@@ -10,7 +10,7 @@ a {
 .index-left {
     float: left;
     margin: 0 0 0 20px;
-    min-width: 300px;
+    min-width: 200px;
     width: 70%;
 }
 .blog-description-box {

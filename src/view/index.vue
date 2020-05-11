@@ -1,7 +1,7 @@
 <template>
     <el-container id="index">
         <el-header>
-            <nav-index></nav-index>
+            <nav-index v-bind:active-index="count"></nav-index>
         </el-header>
         <el-main>
             <div class="index-left">
@@ -35,6 +35,7 @@
             return {
                 pageResult: {},
                 currentPage: 0,
+                count: '1'
             }
         },
         methods: {

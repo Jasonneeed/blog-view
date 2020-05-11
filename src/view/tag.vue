@@ -1,7 +1,7 @@
 <template>
     <el-container id="tag-show">
         <el-header>
-            <nav-index></nav-index>
+            <nav-index v-bind:active-index="activeIndex"></nav-index>
         </el-header>
         <el-main>
             <div class="index-left">
@@ -25,15 +25,17 @@
     import NavIndex from "../components/nav-index";
     import NavRight from "../components/nav-right";
     import Footer from "../components/footer";
-    import {categories, initPage} from "../method/base";
+    import BlogList from "../components/blogList";
+    import {initPage, tagData} from "../method/base";
 
     export default {
         name: "tag",
-        components: {NavRight, NavIndex, Footer},
+        components: {NavRight, NavIndex, Footer,BlogList},
         data() {
             return {
                 pageResult: {},
-                currentPage: 0
+                currentPage: 0,
+                activeIndex: 3
             }
         },
         methods: {
@@ -42,10 +44,13 @@
                 this.getData(page);
             },
             getData: function (page) {
-                categories(page).then(res => {
+                let tagName = this.$route.params.tag;
+                console.log(tagName);
+                tagData(tagName, page).then(res => {
                     return res.json();
                 }).then(json => {
                     this.pageResult = json;
+                    console.log(this.pageResult);
                     this.$nextTick(() => {
                         this.currentPage = this.pageResult.currentPage;
                     });
@@ -56,11 +61,22 @@
         },
         created: function () {
             let page = initPage(this.$route.query.page);
+            this.$nextTick(()=>{
+                this.activeIndex = 3;
+            });
             this.getData(page);
         }
     }
 </script>
 
 <style scoped>
+    @import "../style/common.css";
 
+    p {
+        display: inline-block;
+        margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 </style>
