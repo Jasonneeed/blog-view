@@ -28,7 +28,6 @@
             }).then(json => {
                 this.blog = json;
                 this.title = this.blog.title;
-                console.log(this.blog);
             });
         }
     }

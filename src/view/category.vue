@@ -34,7 +34,8 @@
         data() {
             return {
                 pageResult: {},
-                currentPage: 0
+                currentPage: 0,
+                activeIndex: '2'
             }
         },
         methods: {

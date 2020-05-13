@@ -1,7 +1,7 @@
 <template>
-<div id="login-form">
+    <div id="login-form">
 
-</div>
+    </div>
 </template>
 
 <script>

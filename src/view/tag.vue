@@ -35,7 +35,7 @@
             return {
                 pageResult: {},
                 currentPage: 0,
-                activeIndex: 3
+                activeIndex: '3'
             }
         },
         methods: {
