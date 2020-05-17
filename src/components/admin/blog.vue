@@ -10,10 +10,10 @@
             <el-table-column prop="status" label="当前状态"></el-table-column>
             <el-table-column prop="createTime" label="创建时间"></el-table-column>
             <el-table-column prop="updateTime" label="更新时间"></el-table-column>
-            <el-table-column fixed="right" label="操作">
+            <el-table-column label-class-name="table-button" fixed="right" label="操作">
                 <template slot-scope="scope">
-                    <el-button @click="update(scope.row)" type="text" size="small">编辑</el-button>
-                    <el-button @click="delete(scope.row)" type="danger" size="small">删除</el-button>
+                    <el-button @click="update(scope.row)" type="primary" size="small">编辑</el-button>
+                    <el-button @click="del(scope.row)" type="danger" size="small">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -52,8 +52,16 @@
                         console.log(this.pageResult);
                     });
                 }).catch(() => {
-                    this.$router.push({path:'/error'});
+                    this.$router.push({path: '/error'});
                 })
+            },
+            del: function (blog) {
+                //todo 待删除
+                alert(blog.blogId);
+            },
+            update: function (blog) {
+                //todo 待更新
+                alert(blog.blogId);
             }
         },
         created() {
@@ -64,5 +72,17 @@
 </script>
 
 <style scoped>
+    @import "../../style/table.css";
 
+    .el-pagination {
+        text-align: center;
+    }
+
+    .table-button {
+        text-align: center;
+    }
+
+    .el-button + .el-button {
+        margin-left: 0;
+    }
 </style>

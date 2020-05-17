@@ -25,7 +25,7 @@
     import NavIndex from "../components/nav-index";
     import NavRight from "../components/nav-right";
     import Footer from "../components/footer";
-    import {initPage} from "../method/base";
+    import {initPage, categories} from "../method/base";
 
     export default {
         name: "categories",
@@ -42,12 +42,23 @@
                 this.$router.push({path:this.$route.path, query:{page: page}});
             },
             getData(page){
-                console.log(page);
+                categories(page).then(res=>{
+                    return res.json();
+                }).then(json=>{
+                    this.pageResult = json;
+                    this.$nextTick(() => {
+                        this.currentPage = this.pageResult.currentPage;
+                    });
+                    console.log(this.pageResult);
+                }).catch(() => {
+                    this.$router.push({path: '/error'});
+                });
             }
         },
         created() {
             let page = this.$route.query.page;
             this.currentPage = initPage(page);
+            this.getData(this.currentPage);
         }
     }
 </script>

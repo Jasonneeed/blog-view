@@ -30,7 +30,7 @@ export default [{
         {path: '/category', component: categories, meta: {title: '分类'}},
         {path: '/category/:category', name: 'category', component: category, meta: {title: '类别详情'}},
         {
-            path: '/tmcaibudao/admin', component: admin, meta: {title: '后台管理'}, children: [
+            path: '/tmcaibudao/admin/', component: admin, meta: {title: '后台管理'}, children: [
                 {path: 'blog', component: adminBlog, meta: {title: '编辑文章'}},
                 {path: 'blog/editor', component: adminBlogEditor, meta: {title: '编辑文章'}},
                 {path: 'user', component: adminUser, meta: {title: '用户管理'}},

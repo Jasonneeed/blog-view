@@ -1,4 +1,4 @@
-let path = 'http://172.16.34.54'
+let path = 'http://localhost'
 
 export const indexData = (page) => fetch(path + ':99/page/' + page, {
     type: 'indexData'
@@ -19,8 +19,11 @@ export const tags = () => fetch(path + ':99/admin/tag/', {
 export const categoryData = (category, page) => fetch(path + ':99/category/' + category+'/page/'+page, {
     type: 'categoryData'
 });
-export const categories = () => fetch(path + ':99/admin/categories', {
-    type: 'categories'
+export const categories =(page) =>fetch(path+':99/categories?page='+page, {
+   type: 'categories'
+});
+export const adminCategories = () => fetch(path + ':99/admin/categories', {
+    type: 'adminCategories'
 });
 export const adminBlogData = (page) => fetch(path + ':99/admin/blog?page=' + page, {
     type: 'adminBlog'
