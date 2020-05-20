@@ -1,6 +1,6 @@
 <template>
     <div id="admin-blog">
-        <el-table :data="pageResult.list" border>
+        <el-table :data="pageResult.list" v-loading="loading" border>
             <el-table-column prop="blogId" label="id"></el-table-column>
             <el-table-column prop="username" label="作者"></el-table-column>
             <el-table-column prop="title" label="标题"></el-table-column>
@@ -27,14 +27,15 @@
 </template>
 
 <script>
-    import {adminBlogData, initPage} from "../../method/base";
+    import {adminBlogData, blogDelete, initPage} from "../../method/base";
 
     export default {
         name: "blog",
         data() {
             return {
                 pageResult: {},
-                currentPage: 1
+                currentPage: 1,
+                loading: false
             }
         },
         methods: {
@@ -56,8 +57,34 @@
                 })
             },
             del: function (blog) {
-                //todo 待删除
-                alert(blog.blogId);
+                this.$confirm('此操作将永久删除该记录', 'warning', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.loading = true;
+                    let formData = new FormData();
+                    formData.append("blogId", blog.blogId);
+                    blogDelete(formData).then(res => {
+                        return res.json();
+                    }).then(json => {
+                        if (json.code === 200) {
+                            this.$message({
+                                type: 'success',
+                                message: '删除成功'
+                            });
+                            this.getData(this.currentPage);
+                        } else {
+                            this.$message({
+                                type: 'warning',
+                                message: json.message
+                            });
+                        }
+                        this.loading = false;
+                    }).catch(res => {
+                        console.log(res);
+                    });
+                });
             },
             update: function (blog) {
                 //todo 待更新

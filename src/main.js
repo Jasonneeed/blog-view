@@ -4,6 +4,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import VueResource from 'vue-resource'
 import routes from './router/router.js'
 import VueRouter from 'vue-router'
+import 'default-passive-events'
 import App from './App.vue'
 
 Vue.use(ElementUI)

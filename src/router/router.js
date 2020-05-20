@@ -7,7 +7,8 @@ const tag = () => import('../view/tag');
 const tags = () => import('../view/tags');
 const categories = () => import('../view/categories');
 const category = () => import('../view/category');
-const search = ()=>import('../view/search');
+const search = () => import('../view/search');
+const record = () => import('../view/record');
 const admin = () => import('../view/admin/admin');
 const login = () => import('../view/admin/login');
 const adminBlog = () => import('../components/admin/blog');
@@ -23,12 +24,13 @@ export default [{
     component: App,
     children: [
         {path: '/', component: index, meta: {title: '首页'}},
-        {path:'/search/:keyWord', name: 'search', component: search, meata:{title: '搜索结果'}},
+        {path: '/search/:keyWord', name: 'search', component: search, meta: {title: '搜索结果'}},
         {path: '/blog/:blogId', name: 'blog', component: blog, meta: {title: '文章详情'}},
-        {path: '/tag', component: tags, meta: {title: '标签'}},
+        {path: '/tags', component: tags, meta: {title: '标签'}},
         {path: '/tag/:tag', name: 'tag', component: tag, meta: {title: '标签详情'}},
-        {path: '/category', component: categories, meta: {title: '分类'}},
+        {path: '/categories', component: categories, meta: {title: '分类'}},
         {path: '/category/:category', name: 'category', component: category, meta: {title: '类别详情'}},
+        {path: '/record', component: record, meta: {title: '记录'}},
         {
             path: '/tmcaibudao/admin/', component: admin, meta: {title: '后台管理'}, children: [
                 {path: 'blog', component: adminBlog, meta: {title: '编辑文章'}},

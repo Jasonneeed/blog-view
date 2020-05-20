@@ -10,6 +10,11 @@ export const boxData = () => fetch(path + ':99/data', {
 export const blogData = (blogId) => fetch(path + ':99/blog/' + blogId, {
     type: 'blogData'
 });
+export const blogDelete = (blogId) =>fetch(path+':99/admin/blog', {
+    type: 'blogDelete',
+    method: 'delete',
+    body: blogId
+});
 export const tagData = (tagName, page) => fetch(path + ':99/tag/' + tagName + '/page/' + page, {
     type: 'tagData'
 });

@@ -33,10 +33,10 @@
                 if (index !== this.activeIndex) {
                     switch (index) {
                         case '2':
-                            this.$router.push('/category');
+                            this.$router.push({path:'/categories'});
                             break;
                         case '3':
-                            this.$router.push('/tag');
+                            this.$router.push('/tags');
                             break;
                         case '4':
                             this.$router.push('/record');

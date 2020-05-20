@@ -1,7 +1,7 @@
 <template>
     <el-container id="category-show">
         <el-header>
-            <nav-index v-bind:active-index="activeIndex"></nav-index>
+            <nav-index></nav-index>
         </el-header>
         <el-main>
             <div class="index-left">
@@ -35,7 +35,7 @@
             return {
                 pageResult: {},
                 currentPage: 0,
-                activeIndex: '2'
+                category: {}
             }
         },
         methods: {
@@ -60,6 +60,7 @@
         created: function () {
             let page = initPage(this.$route.query.page);
             this.getData(page);
+            this.title = this.$route.params.category;
         }
     }
 </script>
