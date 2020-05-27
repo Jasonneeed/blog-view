@@ -24,7 +24,7 @@ export default [{
     component: App,
     children: [
         {path: '/', component: index, meta: {title: '首页'}},
-        {path: '/search/:keyWord', name: 'search', component: search, meta: {title: '搜索结果'}},
+        {path: '/search/:keyWord', name: 'search', component: search, meta: {title: '搜索结果', authentication: false}},
         {path: '/blog/:blogId', name: 'blog', component: blog, meta: {title: '文章详情'}},
         {path: '/tags', component: tags, meta: {title: '标签'}},
         {path: '/tag/:tag', name: 'tag', component: tag, meta: {title: '标签详情'}},
@@ -32,13 +32,13 @@ export default [{
         {path: '/category/:category', name: 'category', component: category, meta: {title: '类别详情'}},
         {path: '/record', component: record, meta: {title: '记录'}},
         {
-            path: '/tmcaibudao/admin/', component: admin, meta: {title: '后台管理'}, children: [
-                {path: 'blog', component: adminBlog, meta: {title: '编辑文章'}},
-                {path: 'blog/editor', component: adminBlogEditor, meta: {title: '编辑文章'}},
-                {path: 'user', component: adminUser, meta: {title: '用户管理'}},
-                {path: 'log', component: adminLog, meta: {title: '日志管理'}},
-                {path: 'tag', component: adminTag, meta: {title: '标签管理'}},
-                {path: 'category', component: adminCategory, meta: {title: '类别管理'}}
+            path: '/tmcaibudao/admin/', component: admin, meta: {title: '后台管理', authentication: true}, children: [
+                {path: 'blog', component: adminBlog, meta: {title: '编辑文章', authentication: true}},
+                {path: 'blog/editor', component: adminBlogEditor, meta: {title: '编辑文章', authentication: true}},
+                {path: 'user', component: adminUser, meta: {title: '用户管理', authentication: true}},
+                {path: 'log', component: adminLog, meta: {title: '日志管理', authentication: true}},
+                {path: 'tag', component: adminTag, meta: {title: '标签管理', authentication:true}},
+                {path: 'category', component: adminCategory, meta: {title: '类别管理', authentication:true}}
             ],
         },
         {path: '/tmcaibudao/login', component: login, meta: {title: '登录'}},

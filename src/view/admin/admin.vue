@@ -2,14 +2,14 @@
     <div id="admin-show">
         <el-container>
             <el-aside width="200px">
-                <admin-nav-left v-bind:active-index="activeIndex"/>
+                <admin-nav-left :active-index="activeIndex"/>
             </el-aside>
             <el-container>
                 <el-header>
                     <p>这是头</p>
                 </el-header>
                 <el-main class="admin-body">
-                    <router-view></router-view>
+                    <router-view @navigation="resetNav"></router-view>
                 </el-main>
             </el-container>
         </el-container>
@@ -22,10 +22,22 @@
     export default {
         name: "admin",
         components: {AdminNavLeft},
-        data(){
+        data() {
             return {
-                activeIndex: "1-1"
+                activeIndex: ''
             }
+        },
+        methods: {
+            resetNav(index) {
+                this.activeIndex = index;
+            }
+        },
+        created() {
+            // let token = localStorage.getItem('token');
+            console.log('这是路由'+this.$route.meta.authentication);
+            // if (token === undefined || token === null) {
+            //     this.$router.push('/tmcaibudao/login');
+            // }
         }
     }
 </script>
@@ -39,8 +51,7 @@
         padding-bottom: 20px;
     }
 
-    .admin-body{
-        position: absolute;
+    .admin-body {
         text-align: center;
     }
 

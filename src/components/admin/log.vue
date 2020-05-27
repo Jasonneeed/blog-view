@@ -1,6 +1,6 @@
 <template>
     <div id="admin-log">
-        <el-table :data="pageResult.categories" border >
+        <el-table :data="pageResult.list" border >
             <el-table-column prop="categoryId" label="id">
             </el-table-column>
             <el-table-column prop="categoryName" label="类别"></el-table-column>
@@ -24,8 +24,40 @@
 </template>
 
 <script>
+
+    import {initPage} from "../../method/base";
+
     export default {
-        name: "log"
+        name: "log",
+        data(){
+            return {
+                pageResult:{},
+                currentPage:1
+            }
+        },
+        methods:{
+            handlePage: function (page) {
+                this.$router.push({path: this.$route.path, query: {page: page}});
+                this.getData(page)
+            },
+            getData(page){
+                //todo
+                console.log(page);
+            },
+            update(obj){
+                //todo
+                console.log(obj);
+            },
+            delete(obj){
+                //todo
+                console.log(obj);
+            }
+        },
+        created() {
+            let page = initPage(this.$route.query.page);
+            this.getData(page);
+            this.$emit('navigation', '5');
+        }
     }
 </script>
 

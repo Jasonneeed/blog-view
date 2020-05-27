@@ -6,7 +6,7 @@
             <el-table-column prop="title" label="标题"></el-table-column>
             <el-table-column prop="description" label="概述"></el-table-column>
             <el-table-column prop="categoryName" label="所属类别"></el-table-column>
-            <el-table-column prop="enabledComment" label="评论权限"></el-table-column>
+            <el-table-column prop="comment" label="评论权限"></el-table-column>
             <el-table-column prop="status" label="当前状态"></el-table-column>
             <el-table-column prop="createTime" label="创建时间"></el-table-column>
             <el-table-column prop="updateTime" label="更新时间"></el-table-column>
@@ -84,16 +84,18 @@
                     }).catch(res => {
                         console.log(res);
                     });
+                }).catch(() => {
                 });
             },
             update: function (blog) {
-                //todo 待更新
-                alert(blog.blogId);
+                this.$router.push({path: '/tmcaibudao/admin/blog/editor', query:{blogId: blog.blogId}});
             }
         },
         created() {
+
             let page = initPage(this.$route.query.page);
             this.getData(page);
+            this.$emit("navigation", '1');
         }
     }
 </script>
@@ -107,6 +109,12 @@
 
     .table-button {
         text-align: center;
+    }
+
+    #float-button {
+        position: absolute;
+        z-index: 99;
+        right: 10px;
     }
 
     .el-button + .el-button {
